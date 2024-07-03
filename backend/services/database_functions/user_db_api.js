@@ -3,8 +3,13 @@ const commonFunction = require("./common_functions");
 const log = require("../../services/logger");
 const filename = "user_db_api.js";
 
-const createUserDetails = async (username, passwordHash, email,mobile_number) => {
-	const functionName = 'createUserDetails';
+const createUserDetails = async (
+	username,
+	passwordHash,
+	email,
+	mobile_number
+) => {
+	const functionName = "createUserDetails";
 	try {
 		log.info("Getting user data from the function", {
 			file: filename,
@@ -13,8 +18,8 @@ const createUserDetails = async (username, passwordHash, email,mobile_number) =>
 		const userData = new user_model.user({
 			username: username,
 			passwordHash: passwordHash,
-            email:email,
-            mobile_number:mobile_number
+			email: email,
+			mobile_number: mobile_number,
 		});
 		await userData.save();
 		log.info("Successfully saved user info into the db.", {
@@ -23,32 +28,63 @@ const createUserDetails = async (username, passwordHash, email,mobile_number) =>
 		});
 		return userData;
 	} catch (err) {
-		const errorResult = await commonFunction.catchErrorHandling(`Error occurred while creating user.`, 400, err);
-		return { Error: errorResult }
+		const errorResult = await commonFunction.catchErrorHandling(
+			`Error occurred while creating user.`,
+			400,
+			err
+		);
+		return { Error: errorResult };
 	}
 };
 
 const findUser = async (username) => {
-	const functionName = 'findUser';
+	const functionName = "findUser";
 	try {
 		log.info("Getting user data from the function", {
 			file: filename,
 			method: functionName,
 		});
-		const userData = await user_model.user.findOne({ username: username });
+		const userData = await user_model.user.findOne({ name: username });
 		log.info("Successfully fetched user info into the db.", {
 			file: filename,
 			method: functionName,
 		});
 		return userData;
 	} catch (err) {
-		const errorResult = await commonFunction.catchErrorHandling(`Error occurred while fetching user.`, 400, err);
-		return { Error: errorResult }
+		const errorResult = await commonFunction.catchErrorHandling(
+			`Error occurred while fetching user.`,
+			400,
+			err
+		);
+		return { Error: errorResult };
+	}
+};
+
+const findUserById = async (id) => {
+	const functionName = "findUser";
+	try {
+		log.info("Getting user data from the function", {
+			file: filename,
+			method: functionName,
+		});
+		const userData = await user_model.user.findOne({ _id: id });
+		log.info("Successfully fetched user info into the db.", {
+			file: filename,
+			method: functionName,
+		});
+		return userData;
+	} catch (err) {
+		const errorResult = await commonFunction.catchErrorHandling(
+			`Error occurred while fetching user.`,
+			400,
+			err
+		);
+		return { Error: errorResult };
 	}
 };
 
 const updateUserDetails = async (id, updateObj) => {
-	const functionName = 'updateUserDetails';
+	const functionName = "updateUserDetails";
 	try {
 		log.info("Getting user data from the function", {
 			file: filename,
@@ -58,23 +94,27 @@ const updateUserDetails = async (id, updateObj) => {
 			{
 				_id: id,
 			},
-            updateObj
+			updateObj
 		);
 		await userDoc.save();
-        delete userDoc.passwordHash;
+		delete userDoc.passwordHash;
 		log.info("Successfully update user data into the db.", {
 			file: filename,
 			method: functionName,
 		});
 		return userDoc;
 	} catch (err) {
-		const errorResult = await commonFunction.catchErrorHandling(`Error occurred while updating user details.`, 400, err);
-		return { Error: errorResult }
+		const errorResult = await commonFunction.catchErrorHandling(
+			`Error occurred while updating user details.`,
+			400,
+			err
+		);
+		return { Error: errorResult };
 	}
 };
 
 const deleteUserDetails = async (name) => {
-	const functionName = 'deleteUserDetails';
+	const functionName = "deleteUserDetails";
 	try {
 		log.info("Getting user data from the function", {
 			file: filename,
@@ -87,57 +127,95 @@ const deleteUserDetails = async (name) => {
 		});
 		return true;
 	} catch (err) {
-		const errorResult = await commonFunction.catchErrorHandling(`Error occurred while deleting user.`, 400, err);
-		return { Error: errorResult }
+		const errorResult = await commonFunction.catchErrorHandling(
+			`Error occurred while deleting user.`,
+			400,
+			err
+		);
+		return { Error: errorResult };
 	}
 };
 
 const getUserListDetails = async () => {
-	const functionName = 'getUserListDetails';
+	const functionName = "getUserListDetails";
 	try {
 		log.info("Getting users data from the database", {
 			file: filename,
 			method: functionName,
 		});
-		const userList = await user_model.user.find({}, "name email mobile_number -_id");
+		const userList = await user_model.user.find(
+			{},
+			"name email mobile_number -_id"
+		);
 		log.info("Successfully fetched all users from the db.", {
 			file: filename,
 			method: functionName,
 		});
 		return userList;
 	} catch (err) {
-		const errorResult = await commonFunction.catchErrorHandling(`Error occurred while fetching users.`, 400, err);
-		return { Error: errorResult }
+		const errorResult = await commonFunction.catchErrorHandling(
+			`Error occurred while fetching users.`,
+			400,
+			err
+		);
+		return { Error: errorResult };
 	}
 };
 
-const searchUserByName = async (name) =>  {
-    const functionName = 'searchUserByName';
-    try {
-        log.info("Getting users data from the database", {
+const searchUserByName = async (name) => {
+	const functionName = "searchUserByName";
+	try {
+		log.info("Getting users data from the database", {
 			file: filename,
 			method: functionName,
 		});
-      const regex = new RegExp(name, 'i'); // 'i' for case insensitive
-      const users = await user_model.user.find({ name: { $regex: regex } });
-      log.info("Successfully fetched all users from the db.", {
-        file: filename,
-        method: functionName,
-    });
-      return users;
-    } catch (err) {
-        const errorResult = await commonFunction.catchErrorHandling(`Error occurred while fetching users by name.`, 400, err);
-		return { Error: errorResult }
-    }
-  }
+		const regex = new RegExp(name, "i"); // 'i' for case insensitive
+		const users = await user_model.user.find({ name: { $regex: regex } });
+		log.info("Successfully fetched all users from the db.", {
+			file: filename,
+			method: functionName,
+		});
+		return users;
+	} catch (err) {
+		const errorResult = await commonFunction.catchErrorHandling(
+			`Error occurred while fetching users by name.`,
+			400,
+			err
+		);
+		return { Error: errorResult };
+	}
+};
 
-
+const addfollowUser = async (userId, userIdToFollow) => {
+	const functionName = "addfollowUser";
+	try {
+		log.info("Follow user and adding into database", {
+			file: filename,
+			method: functionName,
+		});
+		const userData = await user_model.user.findOneAndUpdate({_id:userId},{following:{$push:userIdToFollow}},{new:true});
+		log.info("Successfully follow user and added into the db.", {
+			file: filename,
+			method: functionName,
+		});
+		return userData;
+	} catch (err) {
+		const errorResult = await commonFunction.catchErrorHandling(
+			`Error occurred while follow user and added into the db.`,
+			400,
+			err
+		);
+		return { Error: errorResult };
+	}
+};
 
 module.exports = {
 	createUserDetails,
 	findUser,
-    searchUserByName,
-    updateUserDetails,
+	searchUserByName,
+	updateUserDetails,
 	deleteUserDetails,
-	getUserListDetails
-}
+	getUserListDetails,
+	findUserById,
+	addfollowUser,
+};

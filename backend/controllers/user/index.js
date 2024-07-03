@@ -36,6 +36,13 @@ user.post(
 	userController.searchUser
 );
 
+user.post(
+	"/follow_user/:user_id",
+	(req, res, next) =>
+		tokenAccessVerification.tokenAccessVerification(req, res, next),
+	userController.followUser
+);
+
 
 
 

@@ -13,15 +13,11 @@ const discussionSchema = new Schema({
         required: true,
         ref: 'user'
     },
-    text: {
+    content: {
         type: String,
         required:true
     },
-    image: {
-        filename: String,
-        path: String,
-        originalName: String,
-    },
+    image: { type:String },
     likes: [{ type: Schema.Types.ObjectId, ref: 'user' }],
     comments: [{ type: Schema.Types.ObjectId, ref: 'comment' }],
     viewCount: { type: Number, default: 0 },

@@ -9,6 +9,12 @@ const userLogs = require("./services/database_functions/user_logs");
 const app = express();
 const http = require('http').Server(app);
 
+// Ensure the uploads directory exists
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+}
+
 async function init() {
 	await commonFunction.connectToDatabase();
 	app.use(cors());

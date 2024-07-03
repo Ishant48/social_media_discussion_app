@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new mongoose.Schema({
     user: { type: Schema.Types.ObjectId, ref: 'user', required: true },
-    discussion: { type: Schema.Types.ObjectId, ref: 'post', required: true },
+    discussion: { type: Schema.Types.ObjectId, ref: 'discussion', required: true },
     content: { type: String, required: true },
     likes: [{ type: Schema.Types.ObjectId, ref: 'user' }],
     replies: [{ type: Schema.Types.ObjectId, ref: 'comment' }],

@@ -1,44 +1,44 @@
 const express = require("express");
-const discussion = express.Router();
-const discussionController = require("./discussion_controller");
+const comment = express.Router();
+const commentController = require("./comment_controller");
 const tokenAccessVerification = require("../../services/token-access-verification.service");
 
-discussion.post(
-	"/create_discussion",
+comment.post(
+	"/create_comment",
 	(req, res, next) =>
 		tokenAccessVerification.tokenAccessVerification(req, res, next),
-	discussionController.createDiscussion
+	commentController.createcomment
 );
 
-discussion.post(
-	"/delete_discussion",
+comment.post(
+	"/delete_comment",
 	(req, res, next) =>
 		tokenAccessVerification.tokenAccessVerification(req, res, next),
-	discussionController.deleteDiscussion
+	commentController.deletecomment
 );
 
-discussion.post(
-	"/update_discussion",
+comment.post(
+	"/update_comment",
 	(req, res, next) =>
 		tokenAccessVerification.tokenAccessVerification(req, res, next),
-	discussionController.updateDiscussion
+	commentController.updatecomment
 );
 
-discussion.post(
-	"/get_discussions_list_by_tag",
+comment.post(
+	"/get_comments_list_by_tag",
 	(req, res, next) =>
 		tokenAccessVerification.tokenAccessVerification(req, res, next),
-	discussionController.getDiscussionByTag
+	commentController.getcommentByTag
 );
 
-discussion.post(
-	"/search_discussion_by_text",
+comment.post(
+	"/search_comment_by_text",
 	(req, res, next) =>
 		tokenAccessVerification.tokenAccessVerification(req, res, next),
-	discussionController.getDiscussionByText
+	commentController.getcommentByText
 );
 
 
 
 
-module.exports = discussion;
+module.exports = comment;
