@@ -1,42 +1,42 @@
 const express = require("express");
-const user = express.Router();
-const userController = require("./user_controller");
+const discussion = express.Router();
+const discussionController = require("./discussion_controller");
 const tokenAccessVerification = require("../../services/token-access-verification.service");
 
-user.post(
-	"/create_user",
-	userController.createUser
+discussion.post(
+	"/create_discussion",
+	discussionController.creatediscussion
 );
 
-user.post(
-	"/delete_user",
+discussion.post(
+	"/delete_discussion",
 	(req, res, next) =>
 		tokenAccessVerification.tokenAccessVerification(req, res, next),
-	userController.deleteUser
+	discussionController.deletediscussion
 );
 
-user.post(
-	"/update_user",
+discussion.post(
+	"/update_discussion",
 	(req, res, next) =>
 		tokenAccessVerification.tokenAccessVerification(req, res, next),
-	userController.updateUser
+	discussionController.updatediscussion
 );
 
-user.post(
-	"/get_users_list",
+discussion.post(
+	"/get_discussions_list",
 	(req, res, next) =>
 		tokenAccessVerification.tokenAccessVerification(req, res, next),
-	userController.getUsersList
+	discussionController.getdiscussionsList
 );
 
-user.post(
-	"/search_user",
+discussion.post(
+	"/search_discussion",
 	(req, res, next) =>
 		tokenAccessVerification.tokenAccessVerification(req, res, next),
-	userController.searchUser
+	discussionController.searchdiscussion
 );
 
 
 
 
-module.exports = user;
+module.exports = discussion;

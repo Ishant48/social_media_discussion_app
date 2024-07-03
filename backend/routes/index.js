@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const login = require("../controllers/login/login.controller");
 const user = require("../controllers/user/index");
-const { discussion } = require("../models/discussion_model");
+const discussion = require("../controllers/discussion/index");
 
 router.use("/login", login);
 router.use("/user", user);
