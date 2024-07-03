@@ -245,10 +245,44 @@ const getDiscussionByText = async (req, res, next) => {
 	}
 };
 
+
+const incrementViewCount = async (req, res, next) => {
+	let data = req.user;
+	const functionName = "incrementViewCount";
+	try {
+        if(req.params.discussion_id){
+            log.info("Fetching discussions from the DB", {
+				userData:data,
+                filename: fileName,
+                method: functionName,
+            });
+            const discussionExists = await discussion_db.findDiscussionPost(req.params.discussion_id);
+			if(!discussionExists){
+				return res.status(400).json({message:"Post doesn't exist!!!"});
+			}
+			const postData = await discussion_db.incrementViewCounts(discussionExists._id);
+            log.info("Successfully increment over post into the DB", {
+                filename: fileName,
+                method: functionName,
+            });
+            return res.status(200).json(postData);
+        }
+		return res.status(401).json({message:"Unauthorised to perform the request!!!"});
+	} catch (err) {
+		const errorResult = await commonFunction.catchErrorHandling(
+			`Error occurred while fetching discussions list by tag.`,
+			400,
+			err
+		);
+		next(errorResult);
+	}
+};
+
 module.exports = {
 	createDiscussion,
 	updateDiscussion,
 	deleteDiscussion,
 	getDiscussionByTag,
-    getDiscussionByText
+    getDiscussionByText,
+	incrementViewCount
 };

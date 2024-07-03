@@ -118,11 +118,35 @@ const getDiscussionsByText = async (searchText) => {
 	}
 };
 
+const incrementViewCounts = async (id) => {
+	const functionName = 'incrementViewCounts';
+	try {
+		log.info("Increment view on post into the db", {
+			file: filename,
+			method: functionName,
+		});
+		const postData = await Post.findByIdAndUpdate(
+            id,
+            { $inc: { viewCount: 1 } },
+            { new: true }
+        );
+		log.info("Successfully update the count into the db.", {
+			file: filename,
+			method: functionName,
+		});
+		return postData;
+	} catch (err) {
+		const errorResult = await commonFunction.catchErrorHandling(`Error occurred while updating count.`, 400, err);
+		return { Error: errorResult }
+	}
+};
+
 module.exports = {
     createDiscussionPost,
     updateDiscussionPost,
     deleteDiscussionPost,
     findDiscussionPost,
     getDiscussionsByTags,
-	getDiscussionsByText
+	getDiscussionsByText,
+	incrementViewCounts
 }

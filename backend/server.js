@@ -1,7 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const path = require("path");
 const log = require("./services/logger");
+const fs = require('fs');
 const commonFunction = require("./services/database_functions/common_functions");
 require("./services/auth-service");
 const userLogs = require("./services/database_functions/user_logs");

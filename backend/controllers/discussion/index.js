@@ -38,6 +38,13 @@ discussion.post(
 	discussionController.getDiscussionByText
 );
 
+discussion.post(
+	"/view_post/:id",
+	(req, res, next) =>
+		tokenAccessVerification.tokenAccessVerification(req, res, next),
+	discussionController.incrementViewCount
+);
+
 
 
 

@@ -7,36 +7,38 @@ comment.post(
 	"/create_comment",
 	(req, res, next) =>
 		tokenAccessVerification.tokenAccessVerification(req, res, next),
-	commentController.createcomment
+	commentController.createComment
+);
+
+comment.post(
+	"/like_comment",
+	(req, res, next) =>
+		tokenAccessVerification.tokenAccessVerification(req, res, next),
+	commentController.likeComments
+);
+
+comment.post(
+	"/modify_comment",
+	(req, res, next) =>
+		tokenAccessVerification.tokenAccessVerification(req, res, next),
+	commentController.modifyComment
 );
 
 comment.post(
 	"/delete_comment",
 	(req, res, next) =>
 		tokenAccessVerification.tokenAccessVerification(req, res, next),
-	commentController.deletecomment
+	commentController.deleteComment
 );
 
-comment.post(
-	"/update_comment",
-	(req, res, next) =>
-		tokenAccessVerification.tokenAccessVerification(req, res, next),
-	commentController.updatecomment
-);
 
 comment.post(
-	"/get_comments_list_by_tag",
+	"/reply_comment",
 	(req, res, next) =>
 		tokenAccessVerification.tokenAccessVerification(req, res, next),
-	commentController.getcommentByTag
+	commentController.replyComment
 );
 
-comment.post(
-	"/search_comment_by_text",
-	(req, res, next) =>
-		tokenAccessVerification.tokenAccessVerification(req, res, next),
-	commentController.getcommentByText
-);
 
 
 
