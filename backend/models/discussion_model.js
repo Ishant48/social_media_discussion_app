@@ -14,13 +14,17 @@ const discussionSchema = new Schema({
         ref: 'user'
     },
     text: {
-        type: String
+        type: String,
+        required:true
     },
     image: {
         filename: String,
         path: String,
         originalName: String,
     },
+    likes: [{ type: Schema.Types.ObjectId, ref: 'user' }],
+    comments: [{ type: Schema.Types.ObjectId, ref: 'comment' }],
+    viewCount: { type: Number, default: 0 },
     hastag: [String],
 });
 
