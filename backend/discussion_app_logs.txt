@@ -1,55 +1,30 @@
-{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T09:49:28.520Z"}
-{"level":"info","message":"connect to database","timestamp":"2024-07-03T09:49:28.521Z"}
-{"level":"info","message":"using new instance","timestamp":"2024-07-03T09:49:28.521Z"}
-{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T09:49:28.521Z"}
-{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T09:49:28.541Z"}
-{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T09:52:29.866Z"}
-{"level":"info","message":"connect to database","timestamp":"2024-07-03T09:52:29.867Z"}
-{"level":"info","message":"using new instance","timestamp":"2024-07-03T09:52:29.867Z"}
-{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T09:52:29.867Z"}
-{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T09:52:29.887Z"}
-{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T09:52:54.109Z"}
-{"level":"info","message":"connect to database","timestamp":"2024-07-03T09:52:54.109Z"}
-{"level":"info","message":"using new instance","timestamp":"2024-07-03T09:52:54.109Z"}
-{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T09:52:54.109Z"}
-{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T09:52:54.130Z"}
-{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T09:53:53.321Z"}
-{"level":"info","message":"connect to database","timestamp":"2024-07-03T09:53:53.321Z"}
-{"level":"info","message":"using new instance","timestamp":"2024-07-03T09:53:53.321Z"}
-{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T09:53:53.321Z"}
-{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T09:53:53.342Z"}
-{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T09:54:11.101Z"}
-{"level":"info","message":"connect to database","timestamp":"2024-07-03T09:54:11.101Z"}
-{"level":"info","message":"using new instance","timestamp":"2024-07-03T09:54:11.103Z"}
-{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T09:54:11.103Z"}
-{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T09:54:11.125Z"}
-{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T09:54:57.794Z"}
-{"level":"info","message":"connect to database","timestamp":"2024-07-03T09:54:57.794Z"}
-{"level":"info","message":"using new instance","timestamp":"2024-07-03T09:54:57.794Z"}
-{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T09:54:57.794Z"}
-{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T09:54:57.816Z"}
-{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T09:56:20.836Z"}
-{"level":"info","message":"connect to database","timestamp":"2024-07-03T09:56:20.836Z"}
-{"level":"info","message":"using new instance","timestamp":"2024-07-03T09:56:20.837Z"}
-{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T09:56:20.837Z"}
-{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T09:56:20.856Z"}
-{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T09:57:38.013Z"}
-{"level":"info","message":"connect to database","timestamp":"2024-07-03T09:57:38.014Z"}
-{"level":"info","message":"using new instance","timestamp":"2024-07-03T09:57:38.014Z"}
-{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T09:57:38.014Z"}
-{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T09:57:38.036Z"}
-{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T09:59:05.306Z"}
-{"level":"info","message":"connect to database","timestamp":"2024-07-03T09:59:05.306Z"}
-{"level":"info","message":"using new instance","timestamp":"2024-07-03T09:59:05.306Z"}
-{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T09:59:05.306Z"}
-{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T09:59:05.328Z"}
-{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T09:59:23.227Z"}
-{"level":"info","message":"connect to database","timestamp":"2024-07-03T09:59:23.228Z"}
-{"level":"info","message":"using new instance","timestamp":"2024-07-03T09:59:23.228Z"}
-{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T09:59:23.228Z"}
-{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T09:59:23.249Z"}
-{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T09:59:31.642Z"}
-{"level":"info","message":"connect to database","timestamp":"2024-07-03T09:59:31.643Z"}
-{"level":"info","message":"using new instance","timestamp":"2024-07-03T09:59:31.643Z"}
-{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T09:59:31.643Z"}
-{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T09:59:31.663Z"}
+{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T10:57:59.797Z"}
+{"level":"info","message":"connect to database","timestamp":"2024-07-03T10:57:59.798Z"}
+{"level":"info","message":"using new instance","timestamp":"2024-07-03T10:57:59.798Z"}
+{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T10:57:59.798Z"}
+{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T10:57:59.818Z"}
+{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T11:04:33.771Z"}
+{"level":"info","message":"connect to database","timestamp":"2024-07-03T11:04:33.771Z"}
+{"level":"info","message":"using new instance","timestamp":"2024-07-03T11:04:33.772Z"}
+{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T11:04:33.772Z"}
+{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T11:04:33.791Z"}
+{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T11:05:03.533Z"}
+{"level":"info","message":"connect to database","timestamp":"2024-07-03T11:05:03.534Z"}
+{"level":"info","message":"using new instance","timestamp":"2024-07-03T11:05:03.534Z"}
+{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T11:05:03.534Z"}
+{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T11:05:03.553Z"}
+{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T11:05:13.979Z"}
+{"level":"info","message":"connect to database","timestamp":"2024-07-03T11:05:13.980Z"}
+{"level":"info","message":"using new instance","timestamp":"2024-07-03T11:05:13.980Z"}
+{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T11:05:13.980Z"}
+{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T11:05:14.002Z"}
+{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T11:07:01.608Z"}
+{"level":"info","message":"connect to database","timestamp":"2024-07-03T11:07:01.609Z"}
+{"level":"info","message":"using new instance","timestamp":"2024-07-03T11:07:01.609Z"}
+{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T11:07:01.609Z"}
+{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T11:07:01.629Z"}
+{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T11:15:33.008Z"}
+{"level":"info","message":"connect to database","timestamp":"2024-07-03T11:15:33.008Z"}
+{"level":"info","message":"using new instance","timestamp":"2024-07-03T11:15:33.008Z"}
+{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T11:15:33.008Z"}
+{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-03T11:15:33.030Z"}

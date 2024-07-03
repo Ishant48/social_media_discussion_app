@@ -25,6 +25,9 @@ const userSchema = new Schema({
 		type: String,
 		required: true,
 	},
+    follows:[
+        Schema.ObjectId
+    ],
 	created_at: {
 		type: Date,
 		default: Date.now,
