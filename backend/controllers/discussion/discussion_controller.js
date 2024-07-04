@@ -18,51 +18,51 @@ const createDiscussion = async (req, res, next) => {
 				message: "Content is nessary for creating a post.",
 			});
 		}
-		const upload = multer({ dest: "uploads/" }).array("file", 1); // Allow only one file
+		const upload = multer({ dest: "uploads/" }).single("file"); // Allow only one file
 		upload(req, res, async function (err) {
 			if (err) {
 				// Log the error using userLogs if needed
 				return res.status(500).json({ message: "File upload failed!!!" });
 			}
-
-			if (req.files.length > 1) {
-				return res.status(400).json({ message: "Only one file is allowed." });
-			}
-
-			const file = req.files[0];
-
+	
+			// No need to check req.files.length since we are allowing only one file with .single()
+			const file = req.file;
+	
 			if (!req.body.content) {
 				return res.status(400).json({
 					message: "Content is necessary for creating a post.",
 				});
 			}
+	
 			let createdObj = {
-				user_id: data._id,
+				user_id: data._id, // Assuming `data` is available in the scope
 				content: req.body.content,
 			};
+	
 			if (file) {
-				const originalFilename = req.file.originalname;
-				const fileExt = path.extname(originalFilename); // Get file extension;
-				const fileName = `${
-					path.parse(originalFilename).name
-				}_${Date.now()}.${fileExt}`;
+				const originalFilename = file.originalname;
+				const fileExt = path.extname(originalFilename); // Get file extension
+				const fileName = `${path.parse(originalFilename).name}_${Date.now()}${fileExt}`;
 				createdObj.image = fileName;
-				createdObj.hashtags = req.body.hashtags
-					? req.body.hashtags.split(",")
-					: [];
-			} else {
-				createdObj.hashtags = req.body.hashtags
-					? req.body.hashtags.split(",")
-					: [];
 			}
+	
+			// Handle hashtags if present
+			createdObj.hashtags = req.body.hashtags ? req.body.hashtags.split(",") : [];
+	
 			try {
+				const functionName = 'createDiscussionPost'; // Define your function name
 				log.info("Creating discussion and adding into the DB", {
-					discussionData: data,
-					filename: fileName,
+					discussionData: createdObj,
+					filename: file ? createdObj.image : 'No file uploaded',
 					method: functionName,
 				});
 				const newPost = await discussion_db.createDiscussionPost(createdObj);
-				res.status(201).json(newPost);
+				if (newPost.Error) {
+					return res.status(400).json({
+						message: `Error occurred while creating post: ${newPost.Error}`,
+					});
+				}
+				return res.status(200).json(newPost);
 			} catch (err) {
 				const errorResult = await commonFunction.catchErrorHandling(
 					`Error occurred while creating discussion.`,
@@ -168,7 +168,7 @@ const deleteDiscussion = async (req, res, next) => {
 					method: functionName,
 				});
 				return res
-					.status(400)
+					.status(200)
 					.json({ message: "Discussion deleted successfully!!!" });
 			} else {
 				return res
@@ -201,6 +201,11 @@ const getDiscussionByTag = async (req, res, next) => {
             });
             const tags = req.body.tags.split(',').map(tag => tag.trim());
             const discussionList = await discussion_db.getDiscussionsByTags(tags);
+			if(discussionList.Error){
+				return res
+				.status(400)
+				.json({ message: "Error occured while finding discussion by tag!!!" });
+			}
             log.info("Successfully fetched discussions from the DB", {
                 filename: fileName,
                 method: functionName,
@@ -227,7 +232,7 @@ const getDiscussionByText = async (req, res, next) => {
                 filename: fileName,
                 method: functionName,
             });
-            const discussionList = await discussion_db.getDiscussionsByText(text);
+            const discussionList = await discussion_db.getDiscussionsByText(req.body.text);
             log.info("Successfully fetched discussions from the DB", {
                 filename: fileName,
                 method: functionName,

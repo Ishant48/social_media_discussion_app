@@ -1,5 +1,6 @@
 const comment_model = require("../../models/comment_model");
 const commonFunction = require("./common_functions");
+const ObjectId = require("mongodb").ObjectID;
 const log = require("../../services/logger");
 const filename = "comment_db_api.js";
 
@@ -11,6 +12,7 @@ const addComment = async (createObj) => {
 			method: functionName,
 		});
 		const commentData = new comment_model.comment(createObj);
+		await commentData.save();
 		log.info("Successfully created comment into the db.", {
 			file: filename,
 			method: functionName,
@@ -24,14 +26,19 @@ const addComment = async (createObj) => {
 
 
 
-const likeComment = async (commentId,commentId) => {
+const likeComment = async (comment,comment_id) => {
+	console.log(comment,comment_id)
 	const functionName = 'likeComment';
 	try {
 		log.info("Like comment into the db", {
 			file: filename,
 			method: functionName,
 		});
-		const commentData = await comment_model.comment.findOneAndUpdate({_id:commentId},{likes:{$push:commentId}});
+		const commentData = await comment_model.comment.findOneAndUpdate(
+			{ _id: comment._id },
+			{ $addToSet: { likes: ObjectId(comment_id) } },
+			{ new: true, useFindAndModify: false }
+		  );
 		log.info("Successfully like comment into the db.", {
 			file: filename,
 			method: functionName,
@@ -67,14 +74,14 @@ const findCommentById = async (id) => {
 };
 
 
-const updateComment = async (updateId,updateObj) => {
+const updateComment = async (updateId,content) => {
 	const functionName = "updateComment";
 	try {
 		log.info("Updating comment data from the function", {
 			file: filename,
 			method: functionName,
 		});
-		const commentData = await comment_model.comment.findOneAndUpdate({ _id: updateId },updateObj);
+		const commentData = await comment_model.comment.findOneAndUpdate({ _id: updateId },{content:content});
 		log.info("Successfully updated comment info into the db.", {
 			file: filename,
 			method: functionName,

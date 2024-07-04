@@ -19,7 +19,7 @@ passport.use(
 			try {
 				const userDoc = await user_model.user.findOne(
 					{
-						username: username,
+						name: (username).toLocaleLowerCase(),
 					},
 					"name passwordHash email"
 				);

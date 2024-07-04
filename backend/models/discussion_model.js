@@ -21,7 +21,7 @@ const discussionSchema = new Schema({
     likes: [{ type: Schema.Types.ObjectId, ref: 'user' }],
     comments: [{ type: Schema.Types.ObjectId, ref: 'comment' }],
     viewCount: { type: Number, default: 0 },
-    hastag: [String],
+    hashtags: [String],
 });
 
 

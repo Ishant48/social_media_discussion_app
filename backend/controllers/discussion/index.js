@@ -39,7 +39,7 @@ discussion.post(
 );
 
 discussion.post(
-	"/view_post/:id",
+	"/view_post/:discussion_id",
 	(req, res, next) =>
 		tokenAccessVerification.tokenAccessVerification(req, res, next),
 	discussionController.incrementViewCount

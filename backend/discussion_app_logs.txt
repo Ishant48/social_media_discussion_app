@@ -1,22 +1,10 @@
-{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T13:19:35.434Z"}
-{"level":"info","message":"connect to database","timestamp":"2024-07-03T13:19:35.438Z"}
-{"level":"info","message":"using new instance","timestamp":"2024-07-03T13:19:35.440Z"}
-{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T13:19:35.441Z"}
-{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T13:19:56.480Z"}
-{"level":"info","message":"connect to database","timestamp":"2024-07-03T13:19:56.483Z"}
-{"level":"info","message":"using new instance","timestamp":"2024-07-03T13:19:56.485Z"}
-{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T13:19:56.486Z"}
-{"level":"error","message":"Unable to connect to MongoDb - MongooseServerSelectionError: connect ECONNREFUSED 0.0.0.0:27017","timestamp":"2024-07-03T13:20:26.522Z"}
-{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T13:21:03.915Z"}
-{"level":"info","message":"connect to database","timestamp":"2024-07-03T13:21:03.917Z"}
-{"level":"info","message":"using new instance","timestamp":"2024-07-03T13:21:03.918Z"}
-{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T13:21:03.918Z"}
-{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T13:21:06.822Z"}
-{"level":"info","message":"connect to database","timestamp":"2024-07-03T13:21:06.825Z"}
-{"level":"info","message":"using new instance","timestamp":"2024-07-03T13:21:06.825Z"}
-{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T13:21:06.826Z"}
-{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-03T13:22:06.241Z"}
-{"level":"info","message":"connect to database","timestamp":"2024-07-03T13:22:06.243Z"}
-{"level":"info","message":"using new instance","timestamp":"2024-07-03T13:22:06.244Z"}
-{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-03T13:22:06.245Z"}
-{"level":"error","message":"Unable to connect to MongoDb - MongooseServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017","timestamp":"2024-07-03T13:22:36.275Z"}
+{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-04T07:08:29.094Z"}
+{"level":"info","message":"connect to database","timestamp":"2024-07-04T07:08:29.095Z"}
+{"level":"info","message":"using new instance","timestamp":"2024-07-04T07:08:29.095Z"}
+{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-04T07:08:29.095Z"}
+{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-04T07:08:29.115Z"}
+{"level":"info","message":"Server is running on port 3000.","timestamp":"2024-07-04T07:08:35.829Z"}
+{"level":"info","message":"connect to database","timestamp":"2024-07-04T07:08:35.829Z"}
+{"level":"info","message":"using new instance","timestamp":"2024-07-04T07:08:35.830Z"}
+{"level":"info","message":"DB connection estabhlishment started","timestamp":"2024-07-04T07:08:35.830Z"}
+{"level":"info","message":"Database Connection estabhlished.","timestamp":"2024-07-04T07:08:35.850Z"}

@@ -11,6 +11,7 @@ const createDiscussionPost = async (createObj) => {
 			method: functionName,
 		});
 		const postData = new discussion_model.discussion(createObj);
+		await postData.save();
 		log.info("Successfully created post into the db.", {
 			file: filename,
 			method: functionName,
@@ -125,7 +126,7 @@ const incrementViewCounts = async (id) => {
 			file: filename,
 			method: functionName,
 		});
-		const postData = await Post.findByIdAndUpdate(
+		const postData = await discussion_model.discussion.findByIdAndUpdate(
             id,
             { $inc: { viewCount: 1 } },
             { new: true }

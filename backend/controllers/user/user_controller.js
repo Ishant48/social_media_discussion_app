@@ -6,11 +6,9 @@ const saltRounds = bcrypt.genSaltSync(10);
 const fileName = "user_controller.js";
 
 const createUser = async (req, res, next) => {
-	let data = req.user;
 	const functionName = "createUser";
 	try {
 		log.info("Creating user and adding into the DB", {
-			userData: data,
 			filename: fileName,
 			method: functionName,
 		});
@@ -69,10 +67,14 @@ const createUser = async (req, res, next) => {
 					email,
 					mobile_number
 				);
-				if (userData) {
+                if(userData.Error){
+                    return res
+						.status(500)
+						.json({ message: `Error occurred while creating user.${userData.Error}` });
+                }
+				else if (userData.name) {
 					log.info("Successfully created user and added into the DB", {
-						userData: userData,
-						filename: __filename,
+						filename: fileName,
 						method: createUser.name,
 					});
 					return res
@@ -118,7 +120,7 @@ const updateUser = async (req, res, next) => {
 			filename: fileName,
 			method: functionName,
 		});
-		let userDoc = await user_db.findUser(req.body.email);
+		let userDoc = await user_db.findUser({email:req.body.email});
 		if (req.body.email === data.email) {
 			if (userDoc) {
 				let updateObj = {};
@@ -176,7 +178,12 @@ const updateUser = async (req, res, next) => {
 						userDoc._id,
 						updateObj
 					);
-					if (updatedUser) {
+                    if(updatedUser.Error){
+                        return res
+                            .status(500)
+                            .json({ message: `Error occurred while updating user.${updatedUser.Error}` });
+                    }
+					else if (updatedUser.name) {
 						log.info("Successfully updated user into the DB", {
 							userData: data,
 							filename: fileName,
@@ -223,14 +230,19 @@ const deleteUser = async (req, res, next) => {
 			file: fileName,
 			method: functionName,
 		});
-		if (req.body.name) {
+		if (req.body.email) {
 			if (req.body.email === data.email) {
-				let userExists = await user_db.findUser(req.body.email);
+				let userExists = await user_db.findUser({email:req.body.email});
 				if (!userExists) {
 					return res.status(400).json({ message: "User Doesn't Exists!!!" });
 				}
 				let userDeleted = await user_db.deleteUserDetails(req.body.email);
-				if (userDeleted) {
+                if(userDeleted.Error){
+                    return res
+                        .status(500)
+                        .json({ message: `Error occurred while deleting user.${userDeleted.Error}` });
+                }
+				else if (userDeleted.name) {
 					log.info("Succesfully Deleted user from the DB", {
 						userData: data,
 						file: fileName,
@@ -275,8 +287,15 @@ const searchUser = async (req, res, next) => {
 				file: fileName,
 				method: functionName,
 			});
-			let userList = await user_db.searchUserByName(name);
-			return userList;
+			const userList = await user_db.searchUserByName(req.body.name);
+            if(userList.Error){
+                return res
+                    .status(500)
+                    .json({ message: `Error occurred while search user.${userList.Error}` });
+            }
+			return res
+						.status(200)
+						.json(userList);
 		} else {
 			log.info("Error occured while searching user from the database", {
 				userData: data,
@@ -339,18 +358,27 @@ const followUser = async (req, res, next) => {
 			return res.status(400).json({ message: "You cannot follow yourself" });
 		}
 
-		const userToFollow = await user_db.findUser(userIdToFollow);
+		const userToFollow = await user_db.findUser({_id:userIdToFollow});
 		if (!userToFollow) {
 			return res.status(404).json({ message: "User not found" });
 		}
-
+        const ownUser = await user_db.findUser({_id:userId});
 		// Check if the user is already following the userToFollow
-		if (req.user.following.includes(userIdToFollow)) {
+		if (ownUser.following.includes(userIdToFollow)) {
 			return res
 				.status(400)
 				.json({ message: "You are already following this user" });
 		}
-		const userData = await user_db.addfollowUser(userId,userIdToFollow);
+		const userData = await user_db.addfollowUser(userId,userToFollow._id);
+        if(userData.Error){
+            return res
+                .status(500)
+                .json({ message: `Error occurred while follow user.${userData.Error}` });
+        }else{
+            return res
+                .status(200)
+                .json({ message: `You are following the user ${userData.name}` });
+        }
 	} catch (err) {
 		const errorResult = await commonFunction.catchErrorHandling(
 			`Error occurred while fetching user from the DB.`,

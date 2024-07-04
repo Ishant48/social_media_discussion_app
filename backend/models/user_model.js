@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+
 const userSchema = new Schema({
     name: {
         type: String,
@@ -25,8 +26,8 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
-    following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
+    followers: [{ type: Schema.Types.ObjectId, ref: 'user' }],
+    following: [{ type: Schema.Types.ObjectId, ref: 'user' }],
     created_at: {
         type: Date,
         default: Date.now,

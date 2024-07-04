@@ -1,5 +1,6 @@
 const user_model = require("../../models/user_model");
 const commonFunction = require("./common_functions");
+const ObjectId = require("mongodb").ObjectID;
 const log = require("../../services/logger");
 const filename = "user_db_api.js";
 
@@ -16,7 +17,7 @@ const createUserDetails = async (
 			method: functionName,
 		});
 		const userData = new user_model.user({
-			username: username,
+			name: username,
 			passwordHash: passwordHash,
 			email: email,
 			mobile_number: mobile_number,
@@ -37,14 +38,14 @@ const createUserDetails = async (
 	}
 };
 
-const findUser = async (username) => {
+const findUser = async (findObj) => {
 	const functionName = "findUser";
 	try {
 		log.info("Getting user data from the function", {
 			file: filename,
 			method: functionName,
 		});
-		const userData = await user_model.user.findOne({ name: username });
+		const userData = await user_model.user.findOne(findObj);
 		log.info("Successfully fetched user info into the db.", {
 			file: filename,
 			method: functionName,
@@ -113,14 +114,14 @@ const updateUserDetails = async (id, updateObj) => {
 	}
 };
 
-const deleteUserDetails = async (name) => {
+const deleteUserDetails = async (email) => {
 	const functionName = "deleteUserDetails";
 	try {
 		log.info("Getting user data from the function", {
 			file: filename,
 			method: functionName,
 		});
-		await user_model.user.findOneAndRemove({ name: name });
+		await user_model.user.findOneAndDelete({ email: email });
 		log.info("Successfully deleted user info from the db.", {
 			file: filename,
 			method: functionName,
@@ -170,7 +171,7 @@ const searchUserByName = async (name) => {
 			method: functionName,
 		});
 		const regex = new RegExp(name, "i"); // 'i' for case insensitive
-		const users = await user_model.user.find({ name: { $regex: regex } });
+		const users = await user_model.user.find({ name: { $regex: regex } },"name email mobile_number -_id");
 		log.info("Successfully fetched all users from the db.", {
 			file: filename,
 			method: functionName,
@@ -193,7 +194,16 @@ const addfollowUser = async (userId, userIdToFollow) => {
 			file: filename,
 			method: functionName,
 		});
-		const userData = await user_model.user.findOneAndUpdate({_id:userId},{following:{$push:userIdToFollow}},{new:true});
+        const userData = await user_model.user.findOneAndUpdate(
+            { _id: ObjectId(userId) },
+            { $push: { following: userIdToFollow } },
+            { new: true, useFindAndModify: false }
+        );
+        await user_model.user.findOneAndUpdate(
+            { _id: ObjectId(userIdToFollow) },
+            { $push: { followers: ObjectId(userId) } },
+            { new: true, useFindAndModify: false }
+        );
 		log.info("Successfully follow user and added into the db.", {
 			file: filename,
 			method: functionName,
