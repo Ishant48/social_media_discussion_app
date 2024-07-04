@@ -12,14 +12,15 @@ passport.use(
 	"user_login",
 	new LocalStrategy(
 		{
-			usernameField: "username",
+			usernameField: "email",
 			passwordField: "password",
 		},
-		async (username, password, done) => {
+		async (email, password, done) => {
+			console.log(email,password)
 			try {
 				const userDoc = await user_model.user.findOne(
 					{
-						name: (username).toLocaleLowerCase(),
+						email: email,
 					},
 					"name passwordHash email"
 				);
