@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "c534e704-10d5-4d65-86c9-23f0a113822e",
+		"_postman_id": "af2ab609-62ab-487b-9a68-208b8d8cbf80",
 		"name": "social_media_app",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "29153980"
+		"_exporter_id": "34705744"
 	},
 	"item": [
 		{
@@ -4119,6 +4119,39 @@
 							"body": "{\n    \"message\": \"Comment deleted successfully\"\n}"
 						}
 					]
+				},
+				{
+					"name": "reply_comment",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\":\"sjjsjsjs\",\r\n    \"comment_id\":\"66863ac1a874b0046b894ebb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/comment/reply_comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comment",
+								"reply_comment"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
